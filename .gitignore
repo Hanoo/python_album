@@ -16,3 +16,4 @@ dist/*
 venv/*
 *.pyc
 __pycache__
+static/gallery/

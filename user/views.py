@@ -25,7 +25,7 @@ def gallery(request):
 
 
 def get_album_list(request):
-    a_dir = os.path.abspath('./static')
+    a_dir = os.path.abspath('./static/gallery')
     file_name_list = []
     sep = '\\'
     if platform.system() == 'Linux':
@@ -42,13 +42,13 @@ def get_album_list(request):
 def get_file_list(request):
     req_dir = request.GET.get('dir')
     file_name_list = []
-    a_dir = os.path.abspath('./static/%s' % req_dir)
+    a_dir = os.path.abspath('./static/gallery/%s' % req_dir)
     sep = '\\'
     if platform.system() == 'Linux':
         sep = '/'
     for file in os.listdir(a_dir):
         if os.path.isfile(a_dir + sep + file):
-            file_name_list.append('/static/%s/%s' % (req_dir, file))
+            file_name_list.append(('/static/gallery/%s/%s' % (req_dir, file), '/static/gallery/%s/thumb/%s' % (req_dir, file)))
         else:
             print('It\'s a dir')
     return render(request, 'gallery.html', locals())
